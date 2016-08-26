@@ -1,28 +1,13 @@
 // Write an algorithm which searches through a 2D array, and whenever it finds a zero should set the entire row and column to zero.
+'use strict'
 
-/* let array1 =
-[
- [2 5 7 3],
-
- [2 0 3 1],
-
- [3 7 3 8],
-
- [1 2 3 4]
-]
- array1.length = 4
-
- * setting column zero
- array1[0][1] = 0
- array1[1][1] = 0
- array1[2][1] = 0
- array1[3][1] = 0
-
- * setting row zero
- array1[1][0] = 0
- array1[1][1] = 0
- array1[1][2] = 0
- array1[1][3] = 0
+/*
+// Expected outcome
+//   [2, 5, 0, 3],
+//   [2, 3, 0, 9],
+//   [3, 7, 0, 8],
+//   [0, 0, 0, 0]
+//
 
  1. Loop through entire 2D array.
  2. Then, loop through each sub-array.
@@ -30,15 +15,48 @@
 
  */
 
+
+let twoDArray = [
+  [2, 5, 7, 3],
+  [2, 3, 3, 9],
+  [3, 7, 3, 8],
+  [1, 2, 0, 8]
+]
+
 function zero2DArray(array) {
+  let rowZero = {};
+  let colZero = {};
+  // Loop through each row
     for (let i = 0; i < array.length; i++) {
         let row = array[i];
+        // Loop through each item in sub-array
         for (let j = 0; j < row.length; j++) {
-
+          let item = row[j];
+          if (item === 0) {
+            rowZero[i] = true; // Check for 0 in that row
+            colZero[j] = true; // Check for 0 in the column
+          }
         }
     }
+  console.log(rowZero, "rowZero")
+  console.log(colZero, "colZero")
+
+  for (let i = 0; i < array.length; i++) {
+    let row = array[i];
+    for (let j = 0; j < row.length; j++) {
+      if((rowZero[i] || colZero[j])) {
+        console.log(i) //3
+        console.log(j) //2
+        // turn all True to 0
+        row[j] = 0;
+      }
+    }
+  }
+
+  return array;
 }
 
+console.log(zero2DArray(twoDArray), "<-- array")
 
 // You are given an array containing positive and negative integers. Write an algorithm which will find the largest sum in a continuous sequence.
 
