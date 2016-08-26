@@ -1,5 +1,6 @@
-// Write an algorithm which searches through a 2D array, and whenever it finds a zero should set the entire row and column to zero.
 'use strict'
+
+// #1. Write an algorithm which searches through a 2D array, and whenever it finds a zero should set the entire row and column to zero.
 
 /*
 // Expected outcome
@@ -12,9 +13,7 @@
  1. Loop through entire 2D array.
  2. Then, loop through each sub-array.
  3. Once, we find 0, use that index to change column & row numbers to zeroes.
-
  */
-
 
 let twoDArray = [
   [2, 5, 7, 3],
@@ -38,30 +37,47 @@ function zero2DArray(array) {
           }
         }
     }
-  console.log(rowZero, "rowZero")
-  console.log(colZero, "colZero")
 
   for (let i = 0; i < array.length; i++) {
     let row = array[i];
     for (let j = 0; j < row.length; j++) {
       if((rowZero[i] || colZero[j])) {
-        console.log(i) //3
-        console.log(j) //2
-        // turn all True to 0
         row[j] = 0;
       }
     }
   }
-
   return array;
 }
-
-console.log(zero2DArray(twoDArray), "<-- array")
-
-// You are given an array containing positive and negative integers. Write an algorithm which will find the largest sum in a continuous sequence.
+// console.log(zero2DArray(twoDArray), "<-- array")
 
 
-// Write an algorithm which will sum two numbers stored in linked lists, where each node contains a single digit of the number.
+
+// #2. You are given an array containing positive and negative integers. Write an algorithm which will find the largest sum in a continuous sequence.
+//
+
+let array = [-2, -1, 3, 5]
+// maxSum(array) = 8
+// 3+5 = 8
+//
+function maxSum(arr) {
+  let possibleSums = [];
+  for (let i = 0; i < array.length-1; i++) {
+   // take sum of each index pairs
+   // generate a list of sum for all consecutive index sequence, total of 3 pair sums
+   // pick the highest sum
+   let sum = array[i] + array[i+1]
+   possibleSums.push(sum)
+  }
+
+  let max = Math.max(...possibleSums)
+}
+
+console.log(maxSum(array), 'maxSum');
+,
+//
+//
+
+// #3. Write an algorithm which will sum two numbers stored in linked lists, where each node contains a single digit of the number.
 
 
 // Write an algorithm which will find all pairs of number in an array which sum to a certain value.
