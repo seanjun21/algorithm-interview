@@ -1,14 +1,14 @@
-'use strict'
+'use strict';
 
 // #1. Write an algorithm which searches through a 2D array, and whenever it finds a zero should set the entire row and column to zero.
 
 /*
-// Expected outcome
-//   [2, 5, 0, 3],
-//   [2, 3, 0, 9],
-//   [3, 7, 0, 8],
-//   [0, 0, 0, 0]
-//
+ // Expected outcome
+ //   [2, 5, 0, 3],
+ //   [2, 3, 0, 9],
+ //   [3, 7, 0, 8],
+ //   [0, 0, 0, 0]
+ //
 
  1. Loop through entire 2D array.
  2. Then, loop through each sub-array.
@@ -16,64 +16,63 @@
  */
 
 let twoDArray = [
-  [2, 5, 7, 3],
-  [2, 3, 3, 9],
-  [3, 7, 3, 8],
-  [1, 2, 0, 8]
-]
+    [2, 5, 7, 3],
+    [2, 3, 3, 9],
+    [3, 7, 3, 8],
+    [1, 2, 0, 8]
+];
 
 function zero2DArray(array) {
-  let rowZero = {};
-  let colZero = {};
-  // Loop through each row
+    let rowZero = {};
+    let colZero = {};
+    // Loop through each row
     for (let i = 0; i < array.length; i++) {
         let row = array[i];
         // Loop through each item in sub-array
         for (let j = 0; j < row.length; j++) {
-          let item = row[j];
-          if (item === 0) {
-            rowZero[i] = true; // Check for 0 in that row
-            colZero[j] = true; // Check for 0 in the column
-          }
+            let item = row[j];
+            if (item === 0) {
+                rowZero[i] = true; // Check for 0 in that row
+                colZero[j] = true; // Check for 0 in the column
+            }
         }
     }
 
-  for (let i = 0; i < array.length; i++) {
-    let row = array[i];
-    for (let j = 0; j < row.length; j++) {
-      if((rowZero[i] || colZero[j])) {
-        row[j] = 0;
-      }
+    for (let i = 0; i < array.length; i++) {
+        let row = array[i];
+        for (let j = 0; j < row.length; j++) {
+            if ((rowZero[i] || colZero[j])) {
+                row[j] = 0;
+            }
+        }
     }
-  }
-  return array;
+    return array;
 }
 // console.log(zero2DArray(twoDArray), "<-- array")
-
 
 
 // #2. You are given an array containing positive and negative integers. Write an algorithm which will find the largest sum in a continuous sequence.
 //
 
-let array = [-2, -1, 3, 5]
+let array = [-2, -1, 3, 5];
 // maxSum(array) = 8
 // 3+5 = 8
 //
-function maxSum(arr) {
-  let possibleSums = [];
-  for (let i = 0; i < array.length-1; i++) {
-   // take sum of each index pairs
-   // generate a list of sum for all consecutive index sequence, total of 3 pair sums
-   // pick the highest sum
-   let sum = array[i] + array[i+1]
-   possibleSums.push(sum)
-  }
+function maxSum(array) {
+    let possibleSums = [];
+    for (let i = 0; i < array.length - 1; i++) {
+        // take sum of each index pairs
+        // generate a list of sum for all consecutive index sequence, total of 3 pair sums
+        // pick the highest sum
+        let sum = array[i] + array[i + 1];
+        possibleSums.push(sum)
+    }
 
-  let max = Math.max(...possibleSums)
+    let max = Math.max.apply(null, possibleSums);
+    return max
 }
 
-console.log(maxSum(array), 'maxSum');
-,
+console.log(maxSum(array), '<---maxSum');
 //
 //
 
